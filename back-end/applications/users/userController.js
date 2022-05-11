@@ -25,3 +25,7 @@ exports.update = (req, res) => {
     res.status(500).json({success: false, error: err})
   })
 }
+
+exports.testApi = (req, res) => {
+  res.status(200).json({success: true})
+}

@@ -17,6 +17,49 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 
 const TodoList = () => {
+
+let allFunc = async () => {
+  await  getTodoList()
+  await createTask()
+}
+
+let getTodoList = () => {
+  return new Promise(async (resolve, reject) => {
+    let url = 'http://localhost:9000/api/auth/test'
+    let res = null
+    try {
+      res = await fetch(url)
+    } catch (error) {
+      
+    }
+    console.log(res)
+    resolve(res)
+  })
+}
+
+let createTask = (taskName, dueDate) => {
+  return new Promise(async (resolve, reject) => {
+    let url = 'http://localhost:9000/api/user/regist'
+    let res = null
+    try {
+      res = await fetch(url, {
+        method: 'post',
+        body: JSON.stringify({
+          username: 'test3',
+          password: '123',
+          displayName: 'test user 3',
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'dataType': 'json'
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    resolve(res)
+  })
+ }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -46,7 +89,7 @@ const TodoList = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton color="primary" className="px-4" onClick={ () => {allFunc()}}>
                           Login
                         </CButton>
                       </CCol>

@@ -1,9 +1,16 @@
 var express = require('express')
 var cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 var apiRouter = require('./routes/api')
 
 var app = express()
+
+let corsOption = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+}
+app.use(cors(corsOption))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
